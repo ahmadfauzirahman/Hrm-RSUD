@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use app\assets\AppAsset;
 use app\components\Breadcrumbs as ComponentsBreadcrumbs;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -22,6 +23,25 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600" rel="stylesheet">
+
+    <style>
+        html,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        ul,
+        li,
+        a,
+        p,
+        table,
+        strong {
+            font-family: 'Poppins', sans-serif !important;
+        }
+    </style>
     <?php $this->head() ?>
 </head>
 
@@ -37,7 +57,7 @@ AppAsset::register($this);
 
             <!-- LOGO -->
             <div class="topbar-left">
-                <a href="index.html" class="logo"><span>H<span>RM</span></span><i class="mdi mdi-layers"></i></a>
+                <b><a style="font-family: 'Quicksand', sans-serif !important" href="<?= Url::to(['/site/index']) ?>" class="logo"><span>Prese<span>nsi</span></span><i class="mdi mdi-layers"></i></a></b>
             </div>
 
             <!-- Button mobile view to collapse sidebar menu -->
@@ -103,7 +123,7 @@ AppAsset::register($this);
                         <img src="<?= Yii::$app->request->baseUrl ?>/img/user.png" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
                         <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
                     </div>
-                    <h5><a href="#"><?= Yii::$app->user->identity->getNama() ?></a> </h5>
+                    <h5><a href="#"><?= Yii::$app->user->identity->nama ?></a> </h5>
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <a href="#">
@@ -151,10 +171,8 @@ AppAsset::register($this);
                     ]) ?>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-xl-12">
-                            <div class="card-box">
-                                <?= Alert::widget() ?>
-                                <?= $content ?>
-                            </div>
+                            <?= Alert::widget() ?>
+                            <?= $content ?>
                         </div>
                     </div>
 
@@ -253,6 +271,32 @@ AppAsset::register($this);
 
     <?php $this->endBody() ?>
 </body>
+
+<script>
+    yii.confirm = function(message, okCallback, cancelCallback) {
+        Swal.fire({
+            title: 'Perhatian!',
+            text: message,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal',
+        }).then((result) => {
+            if (result.value) {
+                okCallback()
+                // console.log(okCallback);
+
+                // Swal.fire(
+                //     'Deleted!',
+                //     'Your file has been deleted.',
+                //     'success'
+                // )
+            }
+        })
+    };
+</script>
 
 </html>
 <?php $this->endPage() ?>

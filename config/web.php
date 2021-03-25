@@ -12,6 +12,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'timeZone' => 'Asia/Jakarta',
     'components' => [
         'formatter' => [
             'dateFormat' => 'php:d-m-Y',
@@ -44,8 +45,8 @@ $config = [
             'class' => 'app\models\User',
             'identityClass' => 'app\models\Identitas',
             'enableAutoLogin' => true,
-            'loginUrl' => '@.sso/masuk?b=http://hrm.rsud-arifin.localhost',
-            'identityCookie' => ['name' => '_identity-id', 'httpOnly' => true, 'domain' => 'rsud-arifin.localhost'],
+            'loginUrl' => '@.sso/masuk?b=http://presensi.rsud-arifin.apps',
+            'identityCookie' => ['name' => '_identity-id', 'httpOnly' => true, 'domain' => 'rsud-arifin.apps'],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -83,6 +84,16 @@ $config = [
         ],
     ],
     'params' => $params,
+    'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+            // enter optional module parameters below - only if you need to  
+            // use your own export download action or custom translation 
+            // message source
+            // 'downloadAction' => 'gridview/export/download',
+            // 'i18n' => []
+        ]
+    ],
 ];
 
 if (YII_ENV_DEV) {
